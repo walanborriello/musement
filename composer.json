@@ -1,0 +1,23 @@
+{
+  "name": "franco/progettoditest",
+  "description": "Progetto di test di Franco",
+  "type": "project",
+  "license": "MIT",
+  "keywords": [
+    "quello che vuoi",
+    "a descrizione del progetto"
+  ],
+  "require": {
+    "php": "^7.3",
+    "ext-json": "*",
+    "nikic/fast-route": "^1.3",
+    "guzzlehttp/guzzle": "^7.2"
+  },
+  "autoload": {
+    "psr-4": {
+      "Api\\": "Musement/Api/",
+      "ExtRequest\\": "Musement/ExtRequest/",
+      "ExceptionOfTest\\": "Musement/ExceptionOfTest"
+    }
+  }
+}
