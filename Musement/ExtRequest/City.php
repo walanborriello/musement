@@ -51,7 +51,14 @@ class City{
             $filter .= ',' . $country;
         }
         $uri = self::URIWEATHER . '?key=' . self::APIKEYWEATHERAPI . $filter;
-        $res = $client->request(self::METHOD, $uri);
+//        $res = $client->request(self::METHOD, $uri);
+        $res = $client->request('GET', $uri, [
+            'proxy' => [
+                'http'  => 'http://proxy.reply.it:8080', // Use this proxy with "http"
+                'https' => 'tcp://proxy.reply.it:8080', // Use this proxy with "https", -> e qua che ci metto allora?
+                'no' => ['']   // Don't use a proxy with these
+            ]
+        ]);
         $res->getHeader('content-type')[0];
 
         if($res->getStatusCode() == self::OK){
