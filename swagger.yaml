@@ -1,0 +1,128 @@
+openapi: 3.0.0
+# Added by API Auto Mocking Plugin
+servers:
+# Added by API Auto Mocking Plugin
+  - description: Sandbox server
+    url: https://sandbox.musement.com/api/v3
+  - description: Production server
+    url: https://api.musement.com/api/v3
+info:
+  description: This is a simple api dedicated to reading the weather forecast for the city for one or more dates or for adding a weather forecast to the city for a certain date
+  version: "1.0.0"
+  title: Musement 
+  contact:
+    email: francesco.borriello@thinkopen.it
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+tags:
+  - name: Cities
+    description: Set/get weather forecast to city
+paths:
+  /V3/cities/{cityId}/weather:
+    put:
+      summary: Add a weather forecast to the city for given date
+      parameters:
+        - in: path
+          name: cityId
+          required: true
+          schema:
+            type: string
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BodyRequest'
+      responses:
+        '200':
+          description: "Return confirm with data"
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/WeatherForecast'
+      tags:
+        - Cities
+    get:
+      summary: Get the weather forecast for the city for one or more dates
+      description: "Get the weather forecast for the city for one or more dates"
+      parameters:
+        - in: path
+          name: cityId
+          required: true
+          schema:
+            type: string
+        - in: query
+          name: date
+          required: false
+          schema:
+            type: string
+            description: "If not set then get the current date"
+            example: "2021-12-23"
+        - in: query
+          name: numOfDays
+          required: false
+          schema:
+            type: string
+            description: "If not set then get only current date else currant date + num_of_days Ex. 2021/12/14 + 2 => 2021/12/14 2021/12/15 2021/12/16"
+            example: "2"
+      responses:
+        '200':
+          description: Return the list of weather per city
+          content:
+            application/json:
+              schema:
+                type: object
+                allOf:
+                  - $ref: '#/components/schemas/WeatherForecast'
+      tags:
+        - Cities
+components:
+  schemas:
+    WeatherForecast:
+      type: object
+      properties:
+        weather:
+          allOf:
+            - $ref: '#/components/schemas/Weather'
+    City:
+      type: string
+      example: "Milan"
+    Weather:
+      type: object
+      properties:
+        city:
+          type: string
+          allOf:
+            - $ref: '#/components/schemas/City'
+        results:
+          type: array
+          items:
+            type: object
+            properties:
+              weather:
+                type: string
+                example: "Partly cloudy"
+              date:
+                type: string
+                allOf:
+                  - $ref: '#/components/schemas/Date'
+    Date:
+      type: string
+      example: "2020-12-14"
+    BodyRequest:
+      type: object
+      required: 
+        - weather
+      properties:
+        weather:
+          type: string
+          example: "Partly cloudy"
+        date:
+          type: string
+          allOf:
+           - $ref: '#/components/schemas/Date'
+    
+        
