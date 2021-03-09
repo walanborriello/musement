@@ -4,6 +4,21 @@ This project was developed to receive information about the weather in cities
 
 Composer was used to install the project vendor using GruzzleHttp for the REST and Fast-route API calls to be able to make the different calls pointing to a specific route.
 
+##Requirements
+<ul><li>composer</li></ul>
+
+##Steps
+In project root, run:
+
+
+```
+1.composer install
+2.composer dump-autoload
+```
+
+###Task #2
+Please check file swagger.yaml and swagger.json in root directory. <br />This content is supposed to be integrated with [https://api.musement.com/swagger_3.5.0.json](https://api.musement.com/swagger_3.5.0.json)
+
 ##CONFIGS
 
 After cloning the repository, create a virtual host in the local environment and run the composer installation command.
@@ -26,10 +41,10 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r){
 ```
 
 You can call:
-<ul>
- <li>[DNS/IP address]/weatherCitiesList returns the list of cities with their weather in the range of two consecutive days.</li>
- <li>[DNS/IP address]/getWeatherCity/[city name] return the weather of specific city.</li>
-</ul>
+```
+ [DNS/IP address]/weatherCitiesList returns the list of cities with their weather in the range of two consecutive days.
+ [DNS/IP address]/getWeatherCity/[city name] return the weather of specific city.
+```
 
 
 ```php
