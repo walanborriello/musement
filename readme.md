@@ -4,6 +4,18 @@ This project was developed to receive information about the weather in cities
 
 Composer was used to install the project vendor using GruzzleHttp for the REST and Fast-route API calls to be able to make the different calls pointing to a specific route.
 
+##CONFIGS
+
+After cloning the repository, create a virtual host in the local environment and run the composer installation command.
+
+##EXAMPLE FOR USE PROJECT
+
+You can call:
+<ul><li>[DNS/IP address]/weatherCitiesList </li>
+<li>[DNS/IP address]/getWeatherCity/[CITY_NAME]/[COUNTRY_NAME]</li>
+</ul>
+
+
 ##CODE BLOCKS
 
 ```php
@@ -15,8 +27,8 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r){
 
 You can call:
 <ul>
- <li>[DNS]/weatherCitiesList returns the list of cities with their weather in the range of two consecutive days.</li>
- <li>[DNS]/getWeatherCity/[city name] return the weather of specific city.</li>
+ <li>[DNS/IP address]/weatherCitiesList returns the list of cities with their weather in the range of two consecutive days.</li>
+ <li>[DNS/IP address]/getWeatherCity/[city name] return the weather of specific city.</li>
 </ul>
 
 
