@@ -18,6 +18,7 @@ class City{
     const METHOD = 'GET';
     const OK = 200;
     const APIKEYWEATHERAPI = '4ed625728d8d435ca77124753211702';
+    const TWO = 2;
 
     protected $_cityName;
     protected $_countryName;
@@ -32,7 +33,10 @@ class City{
     }
 
     /**
+     *
+     * Return weather by city param for 2 days
      * @return string
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function execute(){
         $citiesList = $this->_getWeatherCity();
@@ -46,26 +50,18 @@ class City{
      */
     private function _getWeatherCity(){
         $client = new Client();
-        $filter = '&days=2&q=' . $this->_cityName;
+        $filter = '&days=' . self::TWO . '&q=' . $this->_cityName;
         if(strlen($country = $this->_countryName) > 0){
             $filter .= ',' . $country;
         }
         $uri = self::URIWEATHER . '?key=' . self::APIKEYWEATHERAPI . $filter;
-//        $res = $client->request(self::METHOD, $uri);
-        $res = $client->request('GET', $uri, [
-            'proxy' => [
-                'http'  => 'http://proxy.reply.it:8080', // Use this proxy with "http"
-                'https' => 'tcp://proxy.reply.it:8080', // Use this proxy with "https", -> e qua che ci metto allora?
-                'no' => ['']   // Don't use a proxy with these
-            ]
-        ]);
+        $res = $client->request(self::METHOD, $uri);
         $res->getHeader('content-type')[0];
 
         if($res->getStatusCode() == self::OK){
 
             $resp = json_decode($res->getBody(), true);
 
-            echo "<pre>";
             foreach($resp['forecast']['forecastday'] as $item){
                 $weathersDays[] = $item['day']['condition']['text'];
             }

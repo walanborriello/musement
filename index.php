@@ -5,11 +5,7 @@ ini_set("display_errors", 1);
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r){
     $r->addRoute('GET', '/weatherCitiesList', [\Api\CallMusement::class, 'getWeatherListCities']);
-    // {id} must be a number (\d+)
     $r->addRoute('GET', '/getWeatherCity/{city:[a-zA-Z]+}[/{country:[a-zA-Z]+}]', [\Api\CallMusement::class, 'getWeatherCity']);
-    // The /{title} suffix is optional
-   // $r->addRoute('GET', '/articles/{id:\d+}/{title}[/{mammt:[0-9][a-zA-Z0-9]+}]', [\Api\CallMousement::class, 'execute']);
-//    $r->addRoute('GET', '/articles/{id:\d+}[/{title}]', 'get_article_handler');
 });
 
 // Fetch method and URI from somewhere

@@ -1,11 +1,10 @@
 {
-  "name": "franco/progettoditest",
-  "description": "Progetto di test di Franco",
+  "name": "franco/testmousement",
+  "description": "Test mousement, call mousement for weather info per cities",
   "type": "project",
   "license": "MIT",
   "keywords": [
-    "quello che vuoi",
-    "a descrizione del progetto"
+    "Test mousement", "call mousement" ,"weather info per cities"
   ],
   "require": {
     "php": "^7.3",

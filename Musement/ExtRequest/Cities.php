@@ -28,14 +28,15 @@ class Cities{
     }
 
     /**
-     * @return mixed
+     * Get cities list from musement
+     * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
     private function _getCitiesList(){
         $client = new Client();
         $res = $client->request(self::METHOD, self::URIMUSEMENT);
         $res->getHeader('content-type')[0];
-
+        $citiesArray = [];
         if($res->getStatusCode() == self::OK){
             // 'application/json; charset=utf8'
             $cities = json_decode($res->getBody(), true);
@@ -53,6 +54,8 @@ class Cities{
     }
 
     /**
+     *
+     * Get weather list by cities
      * @return array
      */
     private function _getWeatherCitiesList(){

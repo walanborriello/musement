@@ -10,6 +10,9 @@ namespace Api;
 
 class CallMusement{
 
+    /**
+     * Print list of weather by city
+     */
     public function getWeatherListCities(){
         $citiesObj = new \ExtRequest\Cities();
         $stdout = fopen('php://output', 'w');
@@ -20,6 +23,8 @@ class CallMusement{
     }
 
     /**
+     *
+     * Print weather by processed city
      * @param array ...$params
      */
     public function getWeatherCity(...$params){
