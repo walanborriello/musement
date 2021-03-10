@@ -144,8 +144,17 @@
         }
       },
       "City": {
-        "type": "string",
-        "example": "Milan"
+        "type": "object",
+        "properties": {
+          "weather": {
+            "allOf": [
+              {
+                "$ref": "#/components/schemas/City"
+              }
+            ],
+            "example": "Milan"
+          }
+        }
       },
       "Weather": {
         "type": "object",
