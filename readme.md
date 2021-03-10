@@ -8,7 +8,7 @@ Composer was used to install the project vendor using GruzzleHttp for the REST a
 <ul><li>composer</li></ul>
 
 ##Steps
-In project root, run:
+<br />In project root, run:
 
 
 ```
